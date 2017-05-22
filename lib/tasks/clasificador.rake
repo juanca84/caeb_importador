@@ -22,12 +22,10 @@ namespace :caeb do
     cod_division = nil
     cod_grupo = nil
     cod_clase = nil
-    subclase = nil
     objeto = nil
     i = 0
     (2..sheet.last_row).each do |indice_fila|
-      #objeto = { descripcion: sheet.cell(indice_fila, 6).force_encoding('UTF-8') }
-      objeto = { descripcion: '312312' }
+      objeto = { descripcion: sheet.cell(indice_fila, 6) }
       if sheet.cell(indice_fila, 1).present?
         cod_seccion = sheet.cell(indice_fila, 1)
         objeto['codigo'] = sheet.cell(indice_fila, 1)
