@@ -1,0 +1,23 @@
+$escala: 1.2;
+
+.label-evaluacion {
+  margin-bottom: 0;
+  padding-bottom: 7px;
+  padding-top: 8px;
+  width: 100%;
+}
+
+.td-evaluacion{
+  padding-left: 0px !important;
+  padding-top: 0px !important;
+  padding-right: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.radio-button-evaluacion{
+  transform: scale($escala, $escala);
+  -moz-transform: scale($escala, $escala);
+  -ms-transform: scale($escala, $escala);
+  -webkit-transform: scale($escala, $escala);
+  -o-transform: scale($escala, $escala);
+}

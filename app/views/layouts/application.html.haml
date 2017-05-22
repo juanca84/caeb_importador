@@ -1,0 +1,65 @@
+!!!
+%html
+  %head
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %title Evaluación Institucional
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    / Static navbar
+    %nav.navbar.navbar-default.navbar-static-top
+      .container
+        .navbar-header
+          %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to 'Evaluación Institucional', root_path, class: 'navbar-brand'
+        #navbar.navbar-collapse.collapse
+          %ul.nav.navbar-nav
+            - if current_user.has_role?(:admin)
+              %li
+                = link_to 'Usuarios', usuarios_path
+              %li.dropdown
+                %a.dropdown-toggle{'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', href: '#', role: 'button'}
+                  Cuestionario
+                  %span.caret
+                %ul.dropdown-menu
+                  %li
+                    = link_to 'Tipo de preguntas', tipo_preguntas_path
+                  %li
+                    = link_to 'Competencias', competencias_path
+                  %li{role: 'separator', class: 'divider'}
+                  %li
+                    = link_to 'Preguntas', preguntas_path
+                  %li
+                    = link_to 'Respuestas', respuestas_path
+                  %li{role: 'separator', class: 'divider'}
+                  %li
+                    = link_to 'Resultados', resultados_path
+            %li
+              = link_to 'Evaluaciones', evaluaciones_path
+
+          %ul.nav.navbar-nav.navbar-right
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                = current_user.nombre_completo
+                %span.caret
+              %ul.dropdown-menu
+                %li
+                  = link_to 'Cerrar sesión', destroy_user_session_path, method: :delete
+        / /.nav-collapse
+    .container
+      - if notice.present?
+        .alert.alert-success
+          %button(type="button" class="close" data-dismiss="alert" aria-hidden="true") &times;
+          = notice.html_safe
+      - if alert.present?
+        .alert.alert-danger
+          %button(type="button" class="close" data-dismiss="alert" aria-hidden="true") &times;
+          = alert.html_safe
+
+      = yield
+    / /container

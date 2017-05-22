@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %title Evaluación Institucional
+    = csrf_meta_tags
+    = stylesheet_link_tag 'login', media: 'all', 'data-turbolinks-track': 'reload'
+  %body
+    .container
+      - if notice.present?
+        .alert.alert-success
+          %button(type="button" class="close" data-dismiss="alert" aria-hidden="true") &times;
+          = notice.html_safe
+      - if alert.present?
+        .alert.alert-danger
+          %button(type="button" class="close" data-dismiss="alert" aria-hidden="true") &times;
+          = alert.html_safe
+
+      = yield
